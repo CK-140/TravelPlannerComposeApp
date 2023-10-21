@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
@@ -84,7 +85,7 @@ fun LoginSignupSegmentedSwitch(navController: NavController) {
         }
         Spacer(modifier = Modifier.width(6.dp))
         TextButton(onClick = {
-
+            navController.navigate("signup_screen")
         },
             contentPadding = PaddingValues(0.dp),
             shape = RoundedCornerShape(6.dp),

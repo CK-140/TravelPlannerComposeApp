@@ -16,6 +16,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.travelplannerapp.ui.screens.LoginScreen
 import com.example.travelplannerapp.ui.screens.OnboardingScreen
+import com.example.travelplannerapp.ui.screens.SignUpScreen
 import com.example.travelplannerapp.ui.theme.TravelPlannerAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,6 +38,7 @@ class MainActivity : ComponentActivity() {
                         startDestination = "onboarding_screen"){
                         composable("onboarding_screen"){ OnboardingScreen(navController)}
                         composable(route = "login_screen"){ LoginScreen(navController = navController)}
+                        composable(route = "signup_screen"){ SignUpScreen(navController = navController)}
                     }
                 }
             }
