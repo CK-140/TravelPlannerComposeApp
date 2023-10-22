@@ -5,7 +5,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemColors
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
@@ -29,6 +32,8 @@ import com.example.travelplannerapp.ui.screens.LoginScreen
 import com.example.travelplannerapp.ui.screens.OnboardingScreen
 import com.example.travelplannerapp.ui.screens.ProfileScreen
 import com.example.travelplannerapp.ui.screens.SignUpScreen
+import com.example.travelplannerapp.ui.theme.iconGray
+import com.example.travelplannerapp.ui.theme.textOrange
 
 
 fun NavGraphBuilder.onboardingGraph(navController: NavController){
@@ -50,12 +55,21 @@ navigation(startDestination = "home_screen",
          Scaffold(
              bottomBar = {
                  NavigationBar(containerColor = Color.White,
+                     contentColor = Color.White,
                      tonalElevation = 8.dp) {
                      val navBackStackEntry by navController.currentBackStackEntryAsState()
                      val currentDestination = navBackStackEntry?.destination
                      bottomNavItems.forEach { screen ->
                          NavigationBarItem(
                              selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true ,
+                             colors = NavigationBarItemDefaults.colors(
+                                 selectedIconColor = textOrange,
+                                 indicatorColor = Color.White,
+                                 unselectedIconColor = iconGray,
+                                 unselectedTextColor = iconGray,
+                                 selectedTextColor = textOrange
+
+                             ),
                              onClick = {
                                  navController.navigate(screen.route) {
                                      // Pop up to the start destination of the graph to

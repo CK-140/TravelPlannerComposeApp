@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             TravelPlannerAppTheme {
                 // A surface container using the 'background' color from the theme
-                var loggedIn = false
+                var loggedIn = true
 
                 Surface(
                     modifier = Modifier.fillMaxSize()
