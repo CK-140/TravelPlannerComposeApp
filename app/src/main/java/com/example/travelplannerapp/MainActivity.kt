@@ -14,6 +14,8 @@ import androidx.navigation.NavGraph
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.travelplannerapp.navigation.homeScreenNavGraph
+import com.example.travelplannerapp.navigation.onboardingGraph
 import com.example.travelplannerapp.ui.screens.LoginScreen
 import com.example.travelplannerapp.ui.screens.OnboardingScreen
 import com.example.travelplannerapp.ui.screens.SignUpScreen
@@ -29,16 +31,16 @@ class MainActivity : ComponentActivity() {
         setContent {
             TravelPlannerAppTheme {
                 // A surface container using the 'background' color from the theme
+                var loggedIn = false
 
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {
                     val navController = rememberNavController()
                     NavHost(navController = navController,
-                        startDestination = "onboarding_screen"){
-                        composable("onboarding_screen"){ OnboardingScreen(navController)}
-                        composable(route = "login_screen"){ LoginScreen(navController = navController)}
-                        composable(route = "signup_screen"){ SignUpScreen(navController = navController)}
+                        startDestination =if(!loggedIn) "onboarding" else "home"){
+                        onboardingGraph(navController)
+                        homeScreenNavGraph()
                     }
                 }
             }
