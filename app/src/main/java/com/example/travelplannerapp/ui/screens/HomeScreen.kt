@@ -3,6 +3,7 @@ package com.example.travelplannerapp.ui.screens
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -15,8 +16,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -101,34 +104,39 @@ fun HomeScreen(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
 
-
-                Surface(
+                Button(
                     modifier = Modifier
-                        .padding(start = 12.dp)
-                        .background(Color.White),
-                    shape = RoundedCornerShape(8.dp),
-                    border = BorderStroke(0.5.dp, Color.LightGray)
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .background(Color.White)
-                            .padding(10.dp)
-                    ) {
-                        Text(
+                        .height(32.dp)
+                        .width(80.dp)
+                        .border(
+                            width = 0.1.dp, color = Color.LightGray,
+                            RoundedCornerShape(6.dp)
+                        )
+                        .padding(0.dp)
+                    ,
+
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        textOrange.copy(0.05f), disabledContainerColor =
+                        Color.LightGray, disabledContentColor = Color.White
+                    ),
+                    shape = RoundedCornerShape(6.dp),
+                    onClick = {
+
+                    },
+                    contentPadding = PaddingValues(0.dp),
+                ){
+                    Text(
                             text = getCurrentMonth(), fontFamily = FontFamily(
                                 Font(R.font.plus_jakarta_sans_light)
                             ), fontSize = 14.sp,
-                            color = Color.Black
+                            color = textOrange
                         )
+                    Spacer(modifier = Modifier.width(4.dp))
                         Image(
                             painter = painterResource(id = R.drawable.iv_calendar),
                             contentDescription = ""
                         )
-                    }
                 }
-
-
-
 
                 LazyRow(
                     modifier = Modifier
@@ -247,5 +255,10 @@ fun getCurrentMonth(): String {
         11 -> "Dec"
         else -> ""
     }
+
+}
+
+@Composable
+fun BottomSheet() {
 
 }
